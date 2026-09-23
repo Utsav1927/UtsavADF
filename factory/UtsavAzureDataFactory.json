@@ -1,0 +1,15 @@
+{
+	"name": "UtsavAzureDataFactory",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "96881d32-66dd-43ba-ab1e-465b2294e8ae",
+		"tenantId": "846b5c08-65f6-469d-832d-2a33a175320d"
+	}
+}
