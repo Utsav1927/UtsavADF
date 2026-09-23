@@ -45,13 +45,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Src_ds",
+						"referenceName": "sales_sa_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "salesData_sql_ds",
 						"type": "DatasetReference"
 					}
 				]
@@ -97,13 +97,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Product_ds",
+						"referenceName": "product_sa_ds",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable2",
+						"referenceName": "product_sql_ds",
 						"type": "DatasetReference"
 					}
 				]

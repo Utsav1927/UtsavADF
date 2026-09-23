@@ -1,5 +1,5 @@
 {
-	"name": "Src_ds",
+	"name": "sales_sa_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",

@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "salesData_sql_ds",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "StagingLS",
