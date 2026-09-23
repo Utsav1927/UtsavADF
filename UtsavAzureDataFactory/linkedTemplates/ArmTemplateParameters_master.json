@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "UtsavAzureDataFactory"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"StagingLS_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://utsavadfstorage2026.dfs.core.windows.net/"
+		},
+		"StagingLS_properties_typeProperties_server": {
+			"value": "utsavdemo.database.windows.net"
+		},
+		"StagingLS_properties_typeProperties_database": {
+			"value": "utsavstagingdb"
+		},
+		"StagingLS_properties_typeProperties_userName": {
+			"value": "utsavdev"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
