@@ -1,0 +1,68 @@
+{
+	"name": "Src_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "V2 Salesdata.csv",
+				"fileSystem": "adfdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sale date",
+				"type": "String"
+			},
+			{
+				"name": "Receipt no",
+				"type": "String"
+			},
+			{
+				"name": "Ordertype name",
+				"type": "String"
+			},
+			{
+				"name": "Item name",
+				"type": "String"
+			},
+			{
+				"name": "Category name",
+				"type": "String"
+			},
+			{
+				"name": "Cost Price",
+				"type": "String"
+			},
+			{
+				"name": "Selling price",
+				"type": "String"
+			},
+			{
+				"name": "Item quantity",
+				"type": "String"
+			},
+			{
+				"name": "Item amount",
+				"type": "String"
+			},
+			{
+				"name": "Tax amount",
+				"type": "String"
+			},
+			{
+				"name": "Location",
+				"type": "String"
+			}
+		]
+	}
+}
