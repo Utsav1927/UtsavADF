@@ -440,6 +440,121 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ChennaiData')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "sales_sa_ds",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						},
+						{
+							"dataset": {
+								"referenceName": "product_sa_ds",
+								"type": "DatasetReference"
+							},
+							"name": "source2"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "product_sa_clean",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "join1"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "filter1",
+							"description": "Loca"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          {Sale date} as string,",
+						"          {Receipt no} as string,",
+						"          {Ordertype name} as string,",
+						"          {Item name} as string,",
+						"          {Category name} as string,",
+						"          {Cost Price} as string,",
+						"          {Selling price} as string,",
+						"          {Item quantity} as string,",
+						"          {Item amount} as string,",
+						"          {Tax amount} as string,",
+						"          Location as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source(output(",
+						"          Name as string,",
+						"          {Category name} as string,",
+						"          {Parent Brand} as string,",
+						"          {Cost Price} as string,",
+						"          Tax as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source2",
+						"source1 derive({Item name} = rtrim(ltrim({Item name}))) ~> derivedColumn1",
+						"derivedColumn1, source2 join({Item name} == Name,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join1",
+						"join1 select(mapColumn(",
+						"          {Sale date},",
+						"          {Receipt no},",
+						"          {Ordertype name},",
+						"          {Item name},",
+						"          {Category name} = source1@{Category name},",
+						"          {Cost Price} = source1@{Cost Price},",
+						"          {Selling price},",
+						"          {Item quantity},",
+						"          {Item amount},",
+						"          {Tax amount},",
+						"          Location,",
+						"          {Parent Brand}",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 filter(Location == \"Chennai\") ~> filter1",
+						"filter1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     partitionFileNames:['ChennaiSales.csv'],",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/sales_sa_ds')]",
+				"[concat(variables('factoryId'), '/datasets/product_sa_ds')]",
+				"[concat(variables('factoryId'), '/datasets/product_sa_clean')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Product_Clean')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
