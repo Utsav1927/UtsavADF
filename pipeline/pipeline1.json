@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Script1",
+						"activity": "Truncate Table",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -68,7 +68,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Script1",
+						"activity": "Truncate Table",
 						"dependencyConditions": [
 							"Completed"
 						]
@@ -125,7 +125,7 @@
 				]
 			},
 			{
-				"name": "Script1",
+				"name": "Truncate Table",
 				"type": "Script",
 				"dependsOn": [],
 				"policy": {
