@@ -20,19 +20,7 @@
 		},
 		"schema": [
 			{
-				"name": "Sale date",
-				"type": "String"
-			},
-			{
-				"name": "Receipt no",
-				"type": "String"
-			},
-			{
-				"name": "Ordertype name",
-				"type": "String"
-			},
-			{
-				"name": "Item name",
+				"name": "Name",
 				"type": "String"
 			},
 			{
@@ -40,27 +28,15 @@
 				"type": "String"
 			},
 			{
+				"name": "Parent Brand",
+				"type": "String"
+			},
+			{
 				"name": "Cost Price",
 				"type": "String"
 			},
 			{
-				"name": "Selling price",
-				"type": "String"
-			},
-			{
-				"name": "Item quantity",
-				"type": "String"
-			},
-			{
-				"name": "Item amount",
-				"type": "String"
-			},
-			{
-				"name": "Tax amount",
-				"type": "String"
-			},
-			{
-				"name": "Location",
+				"name": "Tax",
 				"type": "String"
 			}
 		]
