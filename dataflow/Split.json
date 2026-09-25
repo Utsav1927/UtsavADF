@@ -1,0 +1,77 @@
+{
+	"name": "Split",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "sales_sa_ds",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "BangaloreSales_ds",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ChennaiSales_ds",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Sale date} as string,",
+				"          {Receipt no} as string,",
+				"          {Ordertype name} as string,",
+				"          {Item name} as string,",
+				"          {Category name} as string,",
+				"          {Cost Price} as string,",
+				"          {Selling price} as string,",
+				"          {Item quantity} as string,",
+				"          {Item amount} as string,",
+				"          {Tax amount} as string,",
+				"          Location as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 split(Location == \"Chennai\",",
+				"     Location == \"Bangalore\",",
+				"     disjoint: false) ~> split1@(ChennaiFlow, BangaloreFlow)",
+				"split1@BangaloreFlow sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['BangaloreSales'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"split1@ChennaiFlow sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['ChennaiSalesNew'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2"
+			]
+		}
+	}
+}
