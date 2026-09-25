@@ -5,12 +5,28 @@
 			"referenceName": "StagingLS",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SchemaScrDS": {
+				"type": "string",
+				"defaultValue": "dbo"
+			},
+			"tablenameSrcDS": {
+				"type": "string",
+				"defaultValue": "Product"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "Product"
+			"schema": {
+				"value": "@dataset().SchemaScrDS",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tablenameSrcDS",
+				"type": "Expression"
+			}
 		}
 	}
 }

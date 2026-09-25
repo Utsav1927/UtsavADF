@@ -1,8 +1,8 @@
 {
-	"name": "Targetdelete",
+	"name": "Targetdb",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage1",
+			"referenceName": "TargetStagingLS",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -16,17 +16,17 @@
 			}
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "AzureSqlTable",
+		"schema": [],
 		"typeProperties": {
-			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileSystem": "target"
+			"schema": {
+				"value": "@dataset().schemaTargetDs",
+				"type": "Expression"
 			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
-		},
-		"schema": []
+			"table": {
+				"value": "@dataset().TablenameTrgDS",
+				"type": "Expression"
+			}
+		}
 	}
 }
