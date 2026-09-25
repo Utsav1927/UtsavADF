@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "PramCopyTable",
 	"properties": {
 		"activities": [
 			{
@@ -20,15 +20,50 @@
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "product_sql_ds",
 						"type": "DatasetReference",
 						"parameters": {
-							"SchemaScrDS": "dbo",
-							"tablenameSrcDS": "Product"
+							"SchemaScrDS": {
+								"value": "@pipeline().parameters.schema",
+								"type": "Expression"
+							},
+							"tablenameSrcDS": {
+								"value": "@pipeline().parameters.TableName",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "TargetDB",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaTargetDs": {
+								"value": "@pipeline().parameters.schema",
+								"type": "Expression"
+							},
+							"TablenameTrgDS": {
+								"value": "@pipeline().parameters.TableName",
+								"type": "Expression"
+							}
 						}
 					}
 				]
