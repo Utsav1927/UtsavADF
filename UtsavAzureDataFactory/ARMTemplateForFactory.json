@@ -215,10 +215,10 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"SchemaScrDS": {
-										"value": "@pipeline().parameters.schema",
+										"value": "@pipeline().parameters.Schema",
 										"type": "Expression"
 									},
-									"tablenameSrcDS": {
+									"TablenameSrcDS": {
 										"value": "@pipeline().parameters.TableName",
 										"type": "Expression"
 									}
@@ -230,8 +230,8 @@
 								"referenceName": "TargetDB",
 								"type": "DatasetReference",
 								"parameters": {
-									"schemaTargetDs": {
-										"value": "@pipeline().parameters.schema",
+									"SchemaTargetDs": {
+										"value": "@pipeline().parameters.Schema",
 										"type": "Expression"
 									},
 									"TablenameTrgDS": {
@@ -247,7 +247,7 @@
 					"elapsedTimeMetric": {}
 				},
 				"parameters": {
-					"schema": {
+					"Schema": {
 						"type": "string",
 						"defaultValue": "dbo"
 					},
@@ -594,7 +594,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"schemaTargetDs": {
+					"SchemaTargetDs": {
 						"type": "string",
 						"defaultValue": "dbo"
 					},
@@ -608,7 +608,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": {
-						"value": "@dataset().schemaTargetDs",
+						"value": "@dataset().SchemaTargetDs",
 						"type": "Expression"
 					},
 					"table": {
@@ -749,7 +749,7 @@
 						"type": "string",
 						"defaultValue": "dbo"
 					},
-					"tablenameSrcDS": {
+					"TablenameSrcDS": {
 						"type": "string",
 						"defaultValue": "Product"
 					}
@@ -763,7 +763,7 @@
 						"type": "Expression"
 					},
 					"table": {
-						"value": "@dataset().tablenameSrcDS",
+						"value": "@dataset().TablenameSrcDS",
 						"type": "Expression"
 					}
 				}
