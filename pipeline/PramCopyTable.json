@@ -41,10 +41,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"SchemaScrDS": {
-								"value": "@pipeline().parameters.schema",
+								"value": "@pipeline().parameters.Schema",
 								"type": "Expression"
 							},
-							"tablenameSrcDS": {
+							"TablenameSrcDS": {
 								"value": "@pipeline().parameters.TableName",
 								"type": "Expression"
 							}
@@ -56,8 +56,8 @@
 						"referenceName": "TargetDB",
 						"type": "DatasetReference",
 						"parameters": {
-							"schemaTargetDs": {
-								"value": "@pipeline().parameters.schema",
+							"SchemaTargetDs": {
+								"value": "@pipeline().parameters.Schema",
 								"type": "Expression"
 							},
 							"TablenameTrgDS": {
@@ -70,7 +70,7 @@
 			}
 		],
 		"parameters": {
-			"schema": {
+			"Schema": {
 				"type": "string",
 				"defaultValue": "dbo"
 			},

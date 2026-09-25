@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"schemaTargetDs": {
+			"SchemaTargetDs": {
 				"type": "string",
 				"defaultValue": "dbo"
 			},
@@ -20,7 +20,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@dataset().schemaTargetDs",
+				"value": "@dataset().SchemaTargetDs",
 				"type": "Expression"
 			},
 			"table": {
