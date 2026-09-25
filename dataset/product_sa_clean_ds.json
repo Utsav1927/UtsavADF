@@ -1,0 +1,44 @@
+{
+	"name": "product_sa_clean_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Product.csv",
+				"fileSystem": "adfdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Category name",
+				"type": "String"
+			},
+			{
+				"name": "Parent Brand",
+				"type": "String"
+			},
+			{
+				"name": "Cost Price",
+				"type": "String"
+			},
+			{
+				"name": "Tax",
+				"type": "String"
+			}
+		]
+	}
+}
