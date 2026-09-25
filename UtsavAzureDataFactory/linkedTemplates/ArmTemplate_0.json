@@ -479,7 +479,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "product_sql_ds",
+								"referenceName": "product_sa_clean_ds",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -514,20 +514,25 @@
 						"     skipDuplicateMapOutputs: true) ~> select1",
 						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     deletable:false,",
-						"     insertable:true,",
-						"     updateable:false,",
-						"     upsertable:false,",
-						"     format: 'table',",
+						"     input(",
+						"          Name as string,",
+						"          {Category name} as string,",
+						"          {Parent Brand} as string,",
+						"          {Cost Price} as string,",
+						"          Tax as string",
+						"     ),",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+						"     format: 'table') ~> sink1"
 					]
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/product_sa_ds')]",
-				"[concat(variables('factoryId'), '/datasets/product_sql_ds')]"
+				"[concat(variables('factoryId'), '/datasets/product_sa_clean_ds')]"
 			]
 		}
 	]
