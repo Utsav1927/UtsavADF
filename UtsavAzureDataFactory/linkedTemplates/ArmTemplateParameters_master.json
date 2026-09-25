@@ -11,6 +11,9 @@
 		"StagingLS_password": {
 			"value": ""
 		},
+		"TargetStagingLS_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://utsavadfstorage2026.dfs.core.windows.net/"
 		},
@@ -21,6 +24,15 @@
 			"value": "utsavstagingdb"
 		},
 		"StagingLS_properties_typeProperties_userName": {
+			"value": "utsavdev"
+		},
+		"TargetStagingLS_properties_typeProperties_server": {
+			"value": "utsavdemo.database.windows.net"
+		},
+		"TargetStagingLS_properties_typeProperties_database": {
+			"value": "utsavtargetdb"
+		},
+		"TargetStagingLS_properties_typeProperties_userName": {
 			"value": "utsavdev"
 		},
 		"containerUri": {

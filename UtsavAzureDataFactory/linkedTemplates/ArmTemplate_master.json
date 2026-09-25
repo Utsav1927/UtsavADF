@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'StagingLS'"
 		},
+		"TargetStagingLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'TargetStagingLS'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://utsavadfstorage2026.dfs.core.windows.net/"
@@ -28,6 +32,18 @@
 			"defaultValue": "utsavstagingdb"
 		},
 		"StagingLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "utsavdev"
+		},
+		"TargetStagingLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "utsavdemo.database.windows.net"
+		},
+		"TargetStagingLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "utsavtargetdb"
+		},
+		"TargetStagingLS_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "utsavdev"
 		},
@@ -64,6 +80,9 @@
 					"StagingLS_password": {
 						"value": "[parameters('StagingLS_password')]"
 					},
+					"TargetStagingLS_password": {
+						"value": "[parameters('TargetStagingLS_password')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -75,6 +94,15 @@
 					},
 					"StagingLS_properties_typeProperties_userName": {
 						"value": "[parameters('StagingLS_properties_typeProperties_userName')]"
+					},
+					"TargetStagingLS_properties_typeProperties_server": {
+						"value": "[parameters('TargetStagingLS_properties_typeProperties_server')]"
+					},
+					"TargetStagingLS_properties_typeProperties_database": {
+						"value": "[parameters('TargetStagingLS_properties_typeProperties_database')]"
+					},
+					"TargetStagingLS_properties_typeProperties_userName": {
+						"value": "[parameters('TargetStagingLS_properties_typeProperties_userName')]"
 					}
 				}
 			},
