@@ -1,5 +1,5 @@
 {
-	"name": "product",
+	"name": "product_sa_clean",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
