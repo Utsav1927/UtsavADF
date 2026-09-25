@@ -255,7 +255,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/product_sa_clean_ds')]",
+			"name": "[concat(parameters('factoryName'), '/product_sa_clean')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -268,36 +268,15 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "Product.csv",
-						"fileSystem": "adfdata"
+						"fileName": "product_clean",
+						"fileSystem": "process"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
-				"schema": [
-					{
-						"name": "Name",
-						"type": "String"
-					},
-					{
-						"name": "Category name",
-						"type": "String"
-					},
-					{
-						"name": "Parent Brand",
-						"type": "String"
-					},
-					{
-						"name": "Cost Price",
-						"type": "String"
-					},
-					{
-						"name": "Tax",
-						"type": "String"
-					}
-				]
+				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
@@ -525,10 +504,14 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "product_sa_clean_ds",
+								"referenceName": "product_sa_clean",
 								"type": "DatasetReference"
 							},
-							"name": "sink1"
+							"name": "sink1",
+							"rejectedDataLinkedService": {
+								"referenceName": "AzureDataLakeStorage1",
+								"type": "LinkedServiceReference"
+							}
 						}
 					],
 					"transformations": [
@@ -560,25 +543,16 @@
 						"     skipDuplicateMapOutputs: true) ~> select1",
 						"select1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     input(",
-						"          Name as string,",
-						"          {Category name} as string,",
-						"          {Parent Brand} as string,",
-						"          {Cost Price} as string,",
-						"          Tax as string",
-						"     ),",
 						"     umask: 0022,",
 						"     preCommands: [],",
-						"     postCommands: [],",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     format: 'table') ~> sink1"
+						"     postCommands: []) ~> sink1"
 					]
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/product_sa_ds')]",
-				"[concat(variables('factoryId'), '/datasets/product_sa_clean_ds')]"
+				"[concat(variables('factoryId'), '/datasets/product_sa_clean')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		}
 	]
